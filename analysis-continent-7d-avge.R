@@ -1,7 +1,7 @@
 #Create My_theme
 My_theme = theme(plot.title = element_text(hjust = 0, size = 8, color = "black", face = "bold"), plot.subtitle = element_text(color = "black", size = 6), plot.caption = element_text(face = "italic", size = 4), axis.title.x = element_blank(), axis.title.y = element_blank())
 options(scipen=999)
- 
+
 #Americas 7 day average
 Americas = filter(data, continent == "Americas") %>% mutate(chge = confirmed-shift(confirmed,1)) %>% group_by(Date) %>% summarise(total = sum(confirmed)) %>% mutate(Americas_chge = total-shift(total,1)) %>% mutate(Americas_7d_ave = rollmean(Americas_chge, 7, fill=NA, align = "right"))
 Americas <- within(Americas, rm("total"))
