@@ -1,0 +1,22 @@
+library(dplyr)
+library(tidyverse)
+library(data.table)
+library(ggplot2)
+library(ggthemes)
+library(gridExtra)
+library(zoo)
+library(reshape2)
+library(directlabels)
+library(quadprog)
+library(countrycode)
+ 
+main = fread('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv')
+names(main) = tolower(names(main))
+names(main)[1:2] = c('province','country')
+main = melt(main, id.vars = c('province','country','lat','long'))
+data <- main
+setnames(data, c('variable','value'), c('date','confirmed'))
+data$Date <- as.Date(data$date, format = "%m/%d/%y")
+data <- data[,-1]
+data['continent'] <- countrycode(sourcevar = data[, "country"], origin = 'country.name', destination = 'un.region.name', custom_match = c(Kosovo = "Europe"))
+tail(data)
