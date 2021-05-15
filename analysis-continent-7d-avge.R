@@ -1,5 +1,5 @@
 #Create My_theme
-My_theme = theme(plot.title = element_text(hjust = 0, size = 8, color = "black", face = "bold"), plot.subtitle = element_text(color = "black", size = 6), plot.caption = element_text(face = "italic", size = 4), axis.title.x = element_blank(), axis.title.y = element_blank())
+My_theme = theme(plot.title = element_text(hjust = 0, size = 8, color = "black", face = "bold"), plot.subtitle = element_text(color = "black", size = 6), plot.caption = element_text(face = "italic", size = 4), axis.title.x = element_blank(), axis.title.y = element_blank(), axis.text.x = element_text(size = 5), axis.text.y = element_text(size = 5))
 options(scipen=999)
 
 #Americas 7 day average
