@@ -13,7 +13,7 @@ ggsave("figs/Americas.jpg", Americas_plot, height = 3, width = 3, dpi = 180)
 Europe = filter(data, continent == "Europe") %>% mutate(cchge = confirmed-shift(confirmed,1)) %>% group_by(Date) %>% summarise(total = sum(confirmed)) %>% mutate(Europe_chge = total-shift(total,1)) %>% mutate(Europe_7d_ave = rollmean(Europe_chge, 7, fill=NA, align = "right"))
 Europe <- within(Europe, rm("total"))
 tail(Europe)
-Europe_plot <- ggplot(Europe) + geom_col(aes(x = Date, y = Europe_chge), size = 0.01, color = "darkblue", fill = "white") + geom_line(aes(x = Date, y = Europe_7d_ave), size = 1.5, color="red", group = 1) + labs(title = "Covid Change by Continent: Europe", subtitle = "Daily and 7 day rolling average", caption = "Source: JHU, Westpac")  + My_theme
+Europe_plot <- ggplot(Europe) + geom_col(aes(x = Date, y = Europe_chge), size = 0.01, color = "darkblue", fill = "white") + geom_line(aes(x = Date, y = Europe_7d_ave), size = 1.5, color="red", group = 1) + labs(title = "Covid Change by Continent: Europe", subtitle = "Daily and 7 day rolling average", caption = "Source: JHU, Westpac")  + My_theme +ylim(0, 400000)
 ggsave("figs/Europe.jpg", Europe_plot, height = 3, width = 3, dpi = 180)
 
 #Asia 7 day average
